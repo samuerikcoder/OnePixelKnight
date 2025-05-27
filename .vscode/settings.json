@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "structs.h": "c",
+        "libs.h": "c",
+        "sdl_mixer.h": "c"
+    }
+}
