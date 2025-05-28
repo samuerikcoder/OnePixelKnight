@@ -14,7 +14,7 @@ int showWinScreen(Uint32 *gameStartTime, bool *gameMusicStarted, bool *shouldPla
 
     backgroundTexture = IMG_LoadTexture(app.renderer, "../assets/hud/winscreen.png");
     if (backgroundTexture == NULL) {
-        fprintf(stderr, "Erro ao carregar imagem de fundo para vitoria: %s\n", IMG_GetError());
+        fprintf(stderr, "Erro ao carregar a imagem de fundo para vitoria: %s\n", IMG_GetError());
     }
 
     if (gameFont) {
