@@ -40,13 +40,13 @@ void initAudio(void)
         return;
     }
 
-    Mix_VolumeChunk(jumpSound, 100/8);
-    Mix_VolumeChunk(damageSound, 128/8);
-    Mix_VolumeChunk(deathSound, 128/8);
-    Mix_VolumeChunk(startGameSound, 110/8);
-    Mix_VolumeChunk(coinPickupSound, 128/8);
+    Mix_VolumeChunk(jumpSound, 100 / 8);
+    Mix_VolumeChunk(damageSound, 128 / 8);
+    Mix_VolumeChunk(deathSound, 128 / 8);
+    Mix_VolumeChunk(startGameSound, 110 / 8);
+    Mix_VolumeChunk(coinPickupSound, 128 / 8);
 
-    Mix_VolumeMusic(50/8);
+    Mix_VolumeMusic(50 / 8);
 }
 
 void jumpSoundEffect(void)
@@ -176,7 +176,8 @@ void closeAudio(void)
         currentMusic = NULL;
     }
 
-    if (coinPickupSound) Mix_FreeChunk(coinPickupSound); 
+    if (coinPickupSound)
+        Mix_FreeChunk(coinPickupSound);
     coinPickupSound = NULL;
 
     Mix_CloseAudio();

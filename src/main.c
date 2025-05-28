@@ -393,14 +393,16 @@ void runGame()
         {
             int winAction = showWinScreen(&gameStartTime, &gameMusicStarted, &shouldPlayGameMusic, player.coins_collected);            if (winAction == 1)
             { 
-                int menuAction = showMenu(&gameStartTime, &gameMusicStarted, &shouldPlayGameMusic);
+
+                exit(0);
+                /* int menuAction = showMenu(&gameStartTime, &gameMusicStarted, &shouldPlayGameMusic);
 
                 if (menuAction == 1)
                 {
                     player.health = 3;
                     player.isDead = false;
                     break;
-                }
+                } */
             }
             else
             {
