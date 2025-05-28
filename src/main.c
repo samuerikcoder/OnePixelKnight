@@ -90,8 +90,8 @@ void runGame()
     app.camera.y = platforms[0].rect.y - app.camera.h;
 
     player.texture = loadTexture("../assets/entitys/player.png");
-    player.x = platforms[35].rect.x;
-    player.y = platforms[35].rect.y -32;
+    player.x = platforms[0].rect.x;
+    player.y = platforms[0].rect.y -32;
     player.width = 32;
     player.height = 32;
     player.health = 3;

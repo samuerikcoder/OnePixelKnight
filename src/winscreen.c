@@ -19,7 +19,7 @@ int showWinScreen(Uint32 *gameStartTime, bool *gameMusicStarted, bool *shouldPla
 
     if (gameFont) {
         char coinsStr[100]; 
-        sprintf(coinsStr, "Moedas Coletadas: %d/49", coinsCollected);
+        sprintf(coinsStr, "Moedas Coletadas: %d/54", coinsCollected);
 
         SDL_Surface *textSurface = TTF_RenderText_Blended(gameFont, coinsStr, textColor);
         if (textSurface) {
