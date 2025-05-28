@@ -51,20 +51,6 @@ void initAudio(void)
 
 void jumpSoundEffect(void)
 {
-    /* Uint32 now = SDL_GetTicks();
-    if (now - lastJumpSoundTime < JUMP_SOUND_COOLDOWN)
-        return;
-
-    lastJumpSoundTime = now;
-
-    if (jumpSound && !Mix_Playing(JUMP_SOUND_CHANNEL)) {
-        int channel = Mix_PlayChannel(JUMP_SOUND_CHANNEL, jumpSound, 0);
-        printf("Tocando jumpSound no canal %d\n", channel);
-        if (channel == -1) {
-            printf("Falha ao tocar jumpSound: %s\n", Mix_GetError());
-        }
-    } */
-
     int channel = Mix_PlayChannel(JUMP_SOUND_CHANNEL, jumpSound, 0);
     if (channel == -1)
     {

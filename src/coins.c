@@ -6,7 +6,7 @@ int num_active_coins = 0;
 SDL_Texture *coinTexture = NULL;
 SDL_Texture *largeCoinTexture = NULL;
 
-int offsetY_para_ficar_em_cima = -18;
+int offsetY_para_ficar_em_cima = -24;
 
 void addCoin(int x, int y, CoinType type) {
     if (num_active_coins < MAX_COINS) {
@@ -51,12 +51,16 @@ void addCoinRowOnPlatform(Platform *platform, int offsetX, int offsetY, int coun
     }
 }
 
-void initLevelCoins(void) {
+void initLevelCoins(void) { 
     num_active_coins = 0; 
 
     addCoinRowOnPlatform(&platforms[1], 30, -25, 4, 12, COIN_TYPE_NORMAL);
     addCoinRowOnPlatform(&platforms[5], 30, -25, 4, 12, COIN_TYPE_NORMAL);
     addCoinRowOnPlatform(&platforms[9], 30, -25, 4, 12, COIN_TYPE_NORMAL);
+    addCoinRowOnPlatform(&platforms[19], 30, -25, 4, 12, COIN_TYPE_NORMAL);  
+    addCoinRowOnPlatform(&platforms[22], 70, -25, 4, 12, COIN_TYPE_NORMAL); 
+    addCoinRowOnPlatform(&platforms[26], 30, -25, 4, 12, COIN_TYPE_NORMAL);
+
 
     addCoinRowOnPlatform(
         &platforms[13],             
@@ -64,7 +68,43 @@ void initLevelCoins(void) {
         offsetY_para_ficar_em_cima,  
         1,                           
         0,                           
-        COIN_TYPE_NORMAL             
+        COIN_TYPE_LARGE             
+    );
+
+    addCoinRowOnPlatform(
+        &platforms[20],             
+        30,                         
+        offsetY_para_ficar_em_cima,  
+        1,                           
+        0,                           
+        COIN_TYPE_LARGE             
+    );
+
+    addCoinRowOnPlatform(
+        &platforms[30],             
+        30,                         
+        offsetY_para_ficar_em_cima,  
+        1,                           
+        0,                           
+        COIN_TYPE_LARGE             
+    );
+
+    addCoinRowOnPlatform(
+        &platforms[30],             
+        30,                         
+        offsetY_para_ficar_em_cima,  
+        1,                           
+        0,                           
+        COIN_TYPE_LARGE             
+    );
+
+    addCoinRowOnPlatform(
+        &platforms[30],             
+        30,                         
+        offsetY_para_ficar_em_cima,  
+        1,                           
+        0,                           
+        COIN_TYPE_LARGE             
     );
 
     if (platforms[10].rect.w > 0) { 
@@ -157,7 +197,7 @@ void drawCoinUI(SDL_Renderer *renderer, TTF_Font *font, SDL_Texture *iconTexture
     char textBuffer[32];
     sprintf(textBuffer, "x %d", coinCount);
 
-    SDL_Color textColor = { 255, 255, 255, 255 };
+    SDL_Color textColor = {137, 162, 87, 255}; 
 
     SDL_Surface *textSurface = TTF_RenderText_Solid(font, textBuffer, textColor);
     if (!textSurface) {

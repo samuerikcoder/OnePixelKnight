@@ -1,7 +1,7 @@
 #include "libs.h"
 
-Platform platforms[24];
-int numPlatforms = 24;
+Platform platforms[40];
+int numPlatforms = 40;
 
 void  initPlatforms(void)
 {
@@ -21,6 +21,24 @@ void  initPlatforms(void)
     platforms[13] = (Platform){{2030, 500, SMALL_W, SMALL_H}, textureSmalld};
     platforms[14] = (Platform){{2330, 460, SMALL_W, SMALL_H}, textureSmallb};
     platforms[15] = (Platform){{2630, 490, MEDIUM_W, MEDIUM_H}, textureMediumd};
-
+    platforms[16] = (Platform){{2830, 400, SMALL_W, SMALL_H}, textureSmalld};
+    platforms[17] = (Platform){{2630, 330, SMALL_W, SMALL_H}, textureSmallb};
+    platforms[18] = (Platform){{2830, 260, SMALL_W, SMALL_H}, textureSmalld};
+    platforms[19] = (Platform){{3030, 170, MEDIUM_W, MEDIUM_H}, textureMediumb};
+    platforms[20] = (Platform){{3530, 400, SMALL_W, SMALL_H}, textureSmalld};
+    platforms[21] = (Platform){{3730, 300, LARGE_W, LARGE_H}, textureLargeb};
+    platforms[22] = (Platform){{3730, 500, LARGE_W, LARGE_H}, textureLarged};
+    platforms[23] = (Platform){{4130, 600, MEDIUM_W, MEDIUM_H}, textureMediumd};
+    platforms[24] = (Platform){{4130, 200, MEDIUM_W, MEDIUM_H}, textureMediumb};
+    platforms[25] = (Platform){{4430, 300, MEDIUM_W, MEDIUM_H}, textureMediumb};
+    platforms[26] = (Platform){{4430, 500, MEDIUM_W, MEDIUM_H}, textureMediumd};
+    platforms[27] = (Platform){{4670, 200, SMALL_W, SMALL_H}, textureSmallb};
+    platforms[29] = (Platform){{4830, 300, LARGE_W, LARGE_H}, textureLargeb};
+    platforms[30] = (Platform){{4830, 500, SMALL_W, SMALL_H}, textureSmalld};
+    platforms[31] = (Platform){{5130, 200, LARGE_W, LARGE_H}, textureLargeb};
+    platforms[32] = (Platform){{5150, 550, MEDIUM_W, MEDIUM_H}, textureMediumd};
+    platforms[33] = (Platform){{5430, 100, LARGE_W, LARGE_H}, textureLargeb};
+    platforms[34] = (Platform){{5490, 600, SMALL_W, SMALL_H}, textureSmalld};
+    platforms[35] = (Platform){{5730, 500, LARGE_W, LARGE_H}, textureLarged};
 
 }

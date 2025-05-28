@@ -120,8 +120,8 @@ extern Mix_Chunk *startGameSound;
 extern Mix_Chunk *coinPickupSound;
 
 
-int showWinScreen(Uint32 *gameStartTime, bool *gameMusicStarted, bool *shouldPlayGameMusic);
 
+int showWinScreen(Uint32 *gameStartTime, bool *gameMusicStarted, bool *shouldPlayGameMusic, int coinsCollected);
 void initSDL(void);
 void cleanup(void);
 void prepareScene(void);

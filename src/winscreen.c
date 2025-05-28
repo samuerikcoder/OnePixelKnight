@@ -1,53 +1,44 @@
-
-#include "libs.h"
+#include "libs.h" 
 
 extern App app;
-extern TTF_Font *gameFont;
+extern TTF_Font *gameFont; 
 
-int showWinScreen(Uint32 *gameStartTime, bool *gameMusicStarted, bool *shouldPlayGameMusic) {
+int showWinScreen(Uint32 *gameStartTime, bool *gameMusicStarted, bool *shouldPlayGameMusic, int coinsCollected)  {
     SDL_Event event;
-    SDL_Texture *winTextTexture = NULL;
-    SDL_Rect winTextRect;
-    SDL_Color white = {255, 255, 255, 255};
-    int selection = 1;
+    int selection = 1; 
 
-    if (*gameMusicStarted) {
-        Mix_HaltMusic();
-        *gameMusicStarted = false;
+    SDL_Texture *backgroundTexture = NULL;
+    SDL_Texture *coinsTextTexture = NULL; 
+    SDL_Rect coinsTextRect;           
+    SDL_Color textColor = {137, 162, 87, 255}; 
+
+    backgroundTexture = IMG_LoadTexture(app.renderer, "../assets/hud/winscreen.png");
+    if (backgroundTexture == NULL) {
+        fprintf(stderr, "Erro ao carregar imagem de fundo para vitoria: %s\n", IMG_GetError());
     }
 
     if (gameFont) {
-        SDL_Surface *surface = TTF_RenderText_Blended(gameFont, "VOCE VENCEU!", white);
-        if (surface) {
-            winTextTexture = SDL_CreateTextureFromSurface(app.renderer, surface);
-            winTextRect.x = (SCREEN_WIDTH - surface->w) / 2;
-            winTextRect.y = (SCREEN_HEIGHT / 2) - surface->h - 20;
-            winTextRect.w = surface->w;
-            winTextRect.h = surface->h;
-            SDL_FreeSurface(surface);
+        char coinsStr[100]; 
+        sprintf(coinsStr, "Moedas Coletadas: %d/49", coinsCollected);
+
+        SDL_Surface *textSurface = TTF_RenderText_Blended(gameFont, coinsStr, textColor);
+        if (textSurface) {
+            coinsTextTexture = SDL_CreateTextureFromSurface(app.renderer, textSurface);
+            if (coinsTextTexture) {
+                coinsTextRect.x = 450;
+                coinsTextRect.y = 480;
+                coinsTextRect.w = textSurface->w;
+                coinsTextRect.h = textSurface->h;
+            } else {
+                fprintf(stderr, "Erro ao criar textura para texto de moedas: %s\n", SDL_GetError());
+            }
+            SDL_FreeSurface(textSurface); 
         } else {
-            fprintf(stderr, "Erro ao renderizar texto de vitoria: %s\n", TTF_GetError());
+            fprintf(stderr, "Erro ao renderizar texto de moedas: %s\n", TTF_GetError());
         }
     } else {
-        fprintf(stderr, "gameFont nao carregada para winscreen.\n");
+        fprintf(stderr, "gameFont nao carregada para winscreen (texto moedas).\n");
     }
-    
-    SDL_Texture *instructionTextTexture = NULL;
-    SDL_Rect instructionTextRect;
-    if (gameFont) {
-        SDL_Surface* surface = TTF_RenderText_Blended(gameFont, "Pressione ENTER para voltar ao Menu", white);
-        if (surface) {
-            instructionTextTexture = SDL_CreateTextureFromSurface(app.renderer, surface);
-            instructionTextRect.x = (SCREEN_WIDTH - surface->w) / 2;
-            instructionTextRect.y = (SCREEN_HEIGHT / 2) + 20;
-            instructionTextRect.w = surface->w;
-            instructionTextRect.h = surface->h;
-            SDL_FreeSurface(surface);
-        } else {
-            fprintf(stderr, "Erro ao renderizar texto de instrucao (vitoria): %s\n", TTF_GetError());
-        }
-    }
-
 
     int running = 1;
     while (running) {
@@ -55,16 +46,16 @@ int showWinScreen(Uint32 *gameStartTime, bool *gameMusicStarted, bool *shouldPla
             switch (event.type) {
                 case SDL_QUIT:
                     running = 0;
-                    selection = 0;
+                    selection = 0; 
                     break;
                 case SDL_KEYDOWN:
                     switch (event.key.keysym.sym) {
                         case SDLK_RETURN:
                         case SDLK_KP_ENTER:
                             running = 0;
-                            selection = 1;
+                            selection = 1; 
                             break;
-                        case SDLK_q:
+                        case SDLK_q:      
                             running = 0;
                             selection = 0;
                             break;
@@ -74,30 +65,34 @@ int showWinScreen(Uint32 *gameStartTime, bool *gameMusicStarted, bool *shouldPla
                     break;
             }
         }
-
-        SDL_SetRenderDrawColor(app.renderer, 0, 0, 50, 255);
+        SDL_SetRenderDrawColor(app.renderer, 0, 0, 0, 255); 
         SDL_RenderClear(app.renderer);
 
-        if (winTextTexture) {
-            SDL_RenderCopy(app.renderer, winTextTexture, NULL, &winTextRect);
+        if (backgroundTexture) {
+            SDL_RenderCopy(app.renderer, backgroundTexture, NULL, NULL); 
+        } else {
+            SDL_SetRenderDrawColor(app.renderer, 4, 12, 6, 255); 
+            SDL_RenderFillRect(app.renderer, NULL); 
         }
-        if (instructionTextTexture) {
-            SDL_RenderCopy(app.renderer, instructionTextTexture, NULL, &instructionTextRect);
+
+        if (coinsTextTexture) {
+            SDL_RenderCopy(app.renderer, coinsTextTexture, NULL, &coinsTextRect);
         }
 
         SDL_RenderPresent(app.renderer);
-        SDL_Delay(16);
+        SDL_Delay(16); 
     }
 
-    if (winTextTexture) {
-        SDL_DestroyTexture(winTextTexture);
+
+    if (backgroundTexture) {
+        SDL_DestroyTexture(backgroundTexture);
     }
-    if (instructionTextTexture) {
-        SDL_DestroyTexture(instructionTextTexture);
+    if (coinsTextTexture) { 
+        SDL_DestroyTexture(coinsTextTexture);
     }
 
-    if (selection == 1) {
-        *shouldPlayGameMusic = false;
+    if (selection == 1) { 
+        *shouldPlayGameMusic = false; 
     }
     
     return selection;
